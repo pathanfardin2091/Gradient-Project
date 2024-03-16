@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: monospace;
+        }
+        
+        body{
+         background-color: rgb(18, 2, 2) ;
+        }
+        
+        .container{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            /* background-color: #fff; */
+        }
+
+
+        .btn:hover{
+            box-shadow: 0px 4px 5px 0px rgba(59, 59, 59, 0.49);
+            cursor: pointer;
+        }
+
+        .btnSection{
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+            
+        }
+
+        .btn{
+            border-radius: 50px;
+            padding: 7px 15px;
+            border: none;
+            font-size: 19px;
+            color: white;
+            
+        }
+
+        .btn1{
+            background-color: rgb(8, 69, 131);
+        }
+
+        .btn2{
+            background-color: rgb(176, 0, 29);
+        }
+       
+        .btn3{
+            background-color: rgb(45, 110, 8);
+        }
+
+        .container > h1{
+            color: white;
+            text-shadow: 0px 3px 9px rgb(114, 4, 4);
+        }
+
+        .container > p{
+            font-size: 14px;
+            color: rgb(0, 0, 0);
+        }
+
+        .colorCode{
+            width:auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .colorCode{
+            background-color: #f5f5f560;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 2px solid #490000;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+       
+        <h1>Gradient Generator</h1>
+        <div class="btnSection">
+            <button class="btn1 btn">#ffffff</button>
+            <button class="btn2 btn">#ffffff</button>
+            <button class="btn3 btn">#ffffff</button>
+        </div>
+        <p> Copy your code here  </p>
+    
+        <div class="colorCode">
+            background:linear-gradient(to right top, #ffffff, #ffffff, #ffffff);
+        </div>
+    </div>
+
+    <script>
+        let btn = document.querySelector('.btn');
+        let btnOne = document.querySelector('.btn1');
+        let btnTwo = document.querySelector('.btn2');
+        let btnThree = document.querySelector('.btn3');
+        let containerBg = document.querySelector('.container');
+        let colorCodeCode = document.querySelector('.colorCode');
+        let rgb1 = "#000000";
+        let rgb2 = "#ffffff";        
+        let rgb3 = "#000000"
+
+        const value = function getHexCode(){
+            let codeNo = "0123456789ABCDEF";
+            let hexCode = "#";
+                for(let i=0; i<6; i++){
+                    hexCode += codeNo[Math.floor(Math.random() * 16)];
+                }
+            return hexCode;
+        }
+        
+        btnOne.addEventListener('click', () => {
+            btnOne.innerHTML = value();
+            rgb1 = btnOne.innerHTML;
+            document.body.style.background = `linear-gradient(to right top, ${rgb1} 30%, ${rgb2} , ${rgb3} )`;
+            colorCodeCode.innerHTML = `background:linear-gradient(to right top,  ${rgb1}, ${rgb2}, ${rgb3};`;
+        });
+
+        btnTwo.addEventListener('click', () => {
+            btnTwo.innerHTML = value();
+            rgb2 = btnTwo.innerHTML;
+            document.body.style.background = `linear-gradient(to right top, ${rgb1} , ${rgb2} 40%, ${rgb3} )`;
+            colorCodeCode.innerHTML = `background:linear-gradient(to right top,  ${rgb1}, ${rgb2}, ${rgb3};`;
+        });
+
+        btnThree.addEventListener('click', () => {
+            btnThree.innerHTML = value();
+            rgb3 = btnThree.innerHTML;
+            document.body.style.background = `linear-gradient( to right top, ${rgb1} , ${rgb2} , ${rgb3} 90%)`;
+            colorCodeCode.innerHTML = `background:linear-gradient(to right top,  ${rgb1}, ${rgb2}, ${rgb3};`;
+        });
+
+        colorCodeCode.addEventListener('click', ()=> {
+            navigator.clipboard.writeText(colorCodeCode.innerHTML);
+            alert("Copied to Clipboard");
+        })
+        
+        
+       
+
+
+       
+
+    </script>
+    
+</body>
+</html>
